@@ -1,4 +1,4 @@
-<form class="form-signin" action="index.php?action=validateInscription" method="post">
+<form class="form-signin" action="index.php?controller=user&action=creerMenu" method="post">
 
     <h2 class="form-signin-heading">Création de menus</h2>
 
