@@ -29,7 +29,7 @@
 
                             <li><a href="index.php?controller=user">Menu</a></li>
                             <li><a href="index.php?action=camera&controller=user">Camera</a></li>
-                            <li><a href="index.php?action=creerMenu&controller=user">Gestion des menus</a></li>
+                            <li><a href="index.php?action=createMenu&controller=user">Gestion des menus</a></li>
                             <li><a href="index.php?action=gestionPlats&controller=user">Gestions des plats</a></li>
                             
                             
