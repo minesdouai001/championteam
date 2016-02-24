@@ -24,19 +24,15 @@
                     </button>
                     <a class="navbar-brand" href=".">  </a>
                 </div>
-                <div id="navbar" class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav">
+                <div id="navbar" class="collapse navbar-collapse">                    
+                        <ul class="nav navbar-nav">
 
-                        <li><a href="index.php">Menu</a></li>
-                        <li><a href="index.php?action=Camera">Camera</a></li>
+                            <li><a href="index.php">Menu</a></li>
+                            <li><a href="index.php?action=camera">Camera</a></li>
 
-
-
-
-
-
-                        <form class="form-signina" action="index.php?action=connexion" method="post">
-
+                        </ul>                        
+                    <form class="form-signina" action="index.php?action=connexion" method="post">
+                        <ul class="nav navbar-nav navbar-right">
 
                             <?php
                             if (isset($conErrorText))
@@ -45,8 +41,9 @@
                             <input type="text" name="conLogin" class="form-inline" placeholder="Login" value="<?php if (isset($_POST['conLogin'])) echo $_POST['conLogin'] ?>" required autofocus> 
                             <input type="password" name="conPassword" class="form-inline" placeholder="Mot de passe" required>   
                             <button class="btn btn-primary" type="submit" style="margin-top: 5px;">Connexion</button><br>
-                                                    </form>
-</ul>
+
+                        </ul>
+                    </form>
 
 
                 </div>
