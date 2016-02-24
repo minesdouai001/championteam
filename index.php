@@ -1,17 +1,40 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title></title>
-    </head>
-    <body>
-        <?php
-        echo "Hello World!";
-        ?>
-    </body>
-</html>
+<?php
+	
+	session_start(); //Il faut démarrer la session au bon moment (une fois que l'user est défini)
+	
+	// define __ROOT_DIR constant which contains the absolute path on disk
+	// of the directory that contains this file (index. php)
+	// e. g. http://isic.mines-douai.fr/web03/index.php => __ROOT_DIR = /home/web03/public_html
+	$rootDirectoryPath = realpath(dirname(__FILE__));
+	define ( '__ROOT_DIR' , $rootDirectoryPath );
+	
+	// define __BASE_URL constant which contains the URL PATH of the index.php
+	// e. g. http://isic.mines-douai.fr/web03/index.php => __BASE_URL = /web03
+	$base_url = explode( '/', $_SERVER['PHP_SELF']);
+	array_pop($base_url);
+	define ( '__BASE_URL' , implode( ' / ' , $base_url) );
+	
+	// Load all application config
+	require_once(__ROOT_DIR."/config/config.php");
+	
+	// Load the Loader class to automatically load classes when needed
+	require_once(__ROOT_DIR.'/classes/AutoLoader.class.php' );
+	
+	// Reify the current request
+	$request = Request::getCurrentRequest();
+	
+	// Load all SQL requests -----     A deplacer au bon endroit
+        foreach (glob('sql/*.php') as $fichierSQL)
+        {
+            require_once $fichierSQL;
+        }	
+	
+	try {
+		// Instantiate the adequat controller according to the current request
+		$controller = Dispatcher::dispatch($request);
+		// Execute the requested action
+		$controller->execute();
+	} catch (Exception $e) {
+		echo 'Error : ' .$e->getMessage()."\n";
+	}
+?>

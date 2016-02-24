@@ -1,0 +1,107 @@
+body {
+	padding-top: 70px;
+	padding-bottom: 40px;
+	background-color: #eee;
+}
+
+.form-signin {
+	max-width: 330px;
+	padding: 15px;
+	margin: 0 auto;
+}
+
+.form-signin .form-signin-heading, .form-signin .checkbox {
+	margin-bottom: 10px;
+}
+
+.form-signin .checkbox {
+	font-weight: normal;
+}
+
+.form-signin .form-control {
+	position: relative;
+ 	height: auto;
+	-webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  	padding: 10px;
+  	font-size: 16px;
+}
+
+.form-signin .form-control:focus {
+	z-index: 2;
+}
+
+.form-signin input[name="inscPassword2"], input[name="prenom"], input[name="conPassword"], button[type="submit"]{
+	margin-bottom: 10px;
+}
+
+.error {
+	color: red;
+}
+
+/* general defaults */
+
+body {
+	font-size: 16px;
+}
+
+#buttonZooms {
+	margin-bottom: 10px;
+}
+	
+/* Game Board */
+#svg_board {
+	outline: 1px solid #666666;
+}
+
+.path {
+	fill:none;
+	stroke-width: 10px;
+	stroke: transparent;
+	stroke-linecap: round;
+}
+
+.path_clickable {
+	cursor: pointer;
+}
+
+.rouge .path_clickable:hover, .rouge.path_selected {
+	stroke: red !important;
+}
+
+.player_yellow .path_clickable:hover, .player_yellow.path_selected  {
+	stroke: yellow !important;
+}
+
+.vert .path_clickable:hover, .vert.path_selected  {
+	stroke: green !important;
+}
+
+.bleu .path_clickable:hover, .bleu.path_selected  {
+	stroke: blue !important;
+}
+
+/*********************************************Test ça marche: le nom doit correspondre au truc du tableau
+.noir .path_clickable:hover, .noir.path_selected  {
+	stroke: black !important;
+}*/
+
+/*.path_pink { stroke:pink; }
+.path_yellow { stroke:yellow; }
+.path_green { stroke:green; }
+.path_brown { stroke:brown; }
+.path_transparent { stroke:grey; }
+.path_white { stroke:white; }
+.path_blue { stroke:blue; }
+.path_orange { stroke:orange; }
+.path_black { stroke:black; }*/
+
+/* destination card */
+.destinationCard {
+	width: 250px;
+}
+
+.objective_deck {
+	margin-bottom: 80px;
+}
