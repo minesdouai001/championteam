@@ -22,13 +22,7 @@ class User extends Model {
         return $this->infos_user['id_user'];
     }
     
-    public function getMenuInformation($id)
-    {
-        $request = static::infos_menu($id);
-        $data = $request->fetch(PDO::FETCH_OBJ);
-        if (!empty($data))
-        
-    }
+    
     /* public function roleId(){
       return $this->props[self::$table_name.'_ROLE'];
       }

@@ -9,7 +9,8 @@
     
         
         <h2 class="form-signin-heading">Menu du jour 
-           <?php   date_default_timezone_set('Europe/Paris'); 
+           <?php   
+            date_default_timezone_set('Europe/Paris'); 
             if(isset($dateMenu) && $dateMenu != ""){
                     echo($dateMenu);
             }
