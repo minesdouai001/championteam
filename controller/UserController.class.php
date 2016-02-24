@@ -23,6 +23,17 @@ class UserController extends Controller {
         $view->setArg('login', self::$args['user']->username());
         $view->render();  
     }
+    
+    public function creerMenu($args) {
+        $dateMenu = $args->read("dateMenu");
+        $entree = $args->read("entree");
+        $plat = $args->read("plat");
+        $dessert = $args->read("dessert");
+        
+        $view = new UserView($this, 'user', self::$args);
+        $view->setArg('login', self::$args['user']->username());
+        $view->render();  
+    }
 
     public function profile($args) {
         $view = new UserView($this, 'userMenu', self::$args); //**************************$args?
