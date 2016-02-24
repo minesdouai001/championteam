@@ -1,21 +1,14 @@
 <?php
 	
 User::addSqlQuery('LISTE_LOGINS',
-'SELECT LOGIN FROM UTILISATEUR');
+'SELECT username FROM user');
 User::addSqlQuery('USER_LIST',
-'SELECT * FROM UTILISATEUR ORDER BY LOGIN');
-User::addSqlQuery('CLASSEMENT',
-'SELECT LOGIN, VICTOIRES, IF(NB_PARTIES = 0,0,VICTOIRES/NB_PARTIES ) AS RATIO,NB_PARTIES, SCORE_TOTAL FROM UTILISATEUR ORDER BY VICTOIRES DESC'); 
+'SELECT * FROM user ORDER BY username');
 User::addSqlQuery('INFOS_USER',
-'SELECT * FROM UTILISATEUR WHERE NO_UTILISATEUR=: no_utilisateur');
+'SELECT * FROM user WHERE id_user=: id_user');
 User::addSqlQuery('CREER_USER',
-'INSERT INTO UTILISATEUR (LOGIN, PASSWORD, MAIL, NOM, PRENOM, DATE_DE_NAISSANCE, SEXE, PAYS)
-VALUES(: login, : password, : mail, : nom, : prenom, : date_de_naissance, : sexe, : pays)');
+'INSERT INTO Uuser (username, password, admin)
+VALUES(: login, : password, 0');
 User::addSqlQuery('TRY_LOGIN',
-'SELECT NO_UTILISATEUR FROM UTILISATEUR WHERE LOGIN=: login AND PASSWORD=: password');
-User::addSqlQuery('UPDATE_PROFILE',
-'UPDATE UTILISATEUR SET NOM=: nom, PRENOM=: prenom, MAIL=: mail, PAYS=: pays WHERE NO_UTILISATEUR=: no_utilisateur');
-User::addSqlQuery('UPDATE_PASSWORD',
-'UPDATE UTILISATEUR SET PASSWORD=: password WHERE NO_UTILISATEUR=: no_utilisateur');
-
+'SELECT id_user FROM user WHERE username=: username AND password=: password');
 ?>

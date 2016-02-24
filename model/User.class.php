@@ -13,73 +13,13 @@ class User extends Model {
     }
 
     //***************************************************Accesseurs****************************************************************
-    public function login() {
-        return $this->infos_user['login'];
+    public function username() {
+        return $this->infos_user['username'];
     }
 
-    public function nom() {
-        return $this->infos_user['nom'];
-    }
 
-    public function prenom() {
-        return $this->infos_user['prenom'];
-    }
-
-    public function mail() {
-        return $this->infos_user['mail'];
-    }
-
-    public function pays() {
-        return $this->infos_user['pays'];
-    }
-
-    public function nb_parties() {
-        return $this->infos_user['nb_parties'];
-    }
-
-    public function victoires() {
-        return $this->infos_user['victoires'];
-    }
-
-    public function defaites() {
-        return $this->infos_user['nb_parties'] - $this->infos_user['victoires'];
-    }
-
-    public function score_total() {
-        return $this->infos_user['score_total'];
-    }
-
-    public function sexe() {
-        if ($this->infos_user['sexe'] == 'H')
-            return 'Homme';
-        else if ($this->infos_user['sexe'] == 'F')
-            return 'Femme';
-        else
-            return 'non renseigné';
-    }
-
-    public function age() {
-        if ($this->infos_user['date_de_naissance'] == '0000-00-00')
-            return 'non renseigné';
-        $date = explode("-", $this->infos_user['date_de_naissance']);
-        $anneeNaissance = $date[0];
-        $moisNaissance = $date[1];
-        $jourNaissance = $date[2];
-        date_default_timezone_set("UTC");
-        $anneeActuelle = date("Y");
-        $moisActuel = date("n");
-        $jourActuel = date("j");
-        $age = $anneeActuelle - $anneeNaissance;
-        if ($moisActuel <= $moisNaissance) {
-            if ($moisActuel < $moisNaissance || $jourActuel < $jourNaissance) {
-                $age--;
-            }
-        }
-        return $age;
-    }
-
-    public function id() {
-        return $this->infos_user['id'];
+    public function id_user() {
+        return $this->infos_user['id_user'];
     }
 
     /* public function roleId(){
@@ -118,7 +58,7 @@ class User extends Model {
         $request = static::try_login($login, $password);
         $data = $request->fetch(PDO::FETCH_OBJ);
         if (!empty($data)) {
-            self::$instance = new self($data->NO_UTILISATEUR);
+            self::$instance = new self($data->id_user);
             return self::$instance;
         } else
             return null;
@@ -133,18 +73,12 @@ class User extends Model {
         $request = static::infos_user($id);
         $data = $request->fetch(PDO::FETCH_OBJ);
         if (!empty($data)) {
-            $this->infos_user['login'] = $data->LOGIN;
-            $this->infos_user['password'] = $data->PASSWORD;
-            $this->infos_user['mail'] = $data->MAIL;
-            $this->infos_user['nom'] = $data->NOM;
-            $this->infos_user['prenom'] = $data->PRENOM;
-            $this->infos_user['id'] = $data->NO_UTILISATEUR;
-            $this->infos_user['pays'] = $data->PAYS;
-            $this->infos_user['sexe'] = $data->SEXE;
-            $this->infos_user['date_de_naissance'] = $data->DATE_DE_NAISSANCE;
-            $this->infos_user['nb_parties'] = $data->NB_PARTIES;
-            $this->infos_user['victoires'] = $data->VICTOIRES;
-            $this->infos_user['score_total'] = $data->SCORE_TOTAL;
+            $this->infos_user['username'] = $data->username;
+            $this->infos_user['password'] = $data->password;
+            $this->infos_user['id_user'] = $data->id_user;
+            $this->infos_user['admin'] = $data->admin;
+            $this->infos_user['user_id_user'] = $data->user_id_user;
+
         }
     }
 
@@ -174,15 +108,15 @@ class User extends Model {
 
     public static function infos_user($id) {
         $sql = self::$queries['INFOS_USER'];
-        $params = array(': no_utilisateur');
+        $params = array(': id_user');
         $args = array($id);
         return parent::exec($sql, $params, $args);
     }
 
-    public static function try_login($login, $password) {
+    public static function try_login($username, $password) {
         $sql = self::$queries['TRY_LOGIN'];
-        $params = array(': login', ': password');
-        $args = array("'$login'", "'$password'");
+        $params = array(': username', ': password');
+        $args = array("'$username'", "'$password'");
         return parent::exec($sql, $params, $args);
     }
 

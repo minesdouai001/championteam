@@ -10,19 +10,24 @@ class UserController extends Controller {
         parent:: __construct($request);
         $this->request = $request;
         $user = NULL;
-        if (isset($_SESSION['user_id'])) {
-            $this->id = $_SESSION['user_id'];
+        if (isset($_SESSION['id_user'])) {
+            $this->id = $_SESSION['id_user'];
             $user = new User($this->id);
         }
-        self::$args['user'] = $user;        
+        self::$args['user'] = $user;
     }
 
     public function defaultAction($args) {
-        $this->profile($args);
+        $this->dateMenu = $args->read("dateMenu");
+        $view = new UserView($this, 'user');
+        $view->setArg('user', self::$args['user']);
+        $view->setArg('login', self::$args['user']->username());
+        $view->setArg('dateMenu', $this->dateMenu);
+        $view->render();  
     }
 
     public function profile($args) {
-        $view = new UserView($this, 'userProfile', self::$args); //**************************$args?
+        $view = new UserView($this, 'userMenu', self::$args); //**************************$args?
         $view->setArg('id', $this->id);
         $view->setArg('login', self::$args['user']->login());
         $view->render();
