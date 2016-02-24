@@ -1,0 +1,10 @@
+<?php
+	
+Menu::addSqlQuery('LISTE_ENTREES',
+'SELECT NOM FROM ENTREES');
+Menu::addSqlQuery('LISTE_PLATS',
+'SELECT NOM FROM PLATS');
+Menu::addSqlQuery('LISTE_DESSERTS',
+'SELECT NOM FROM DESSERTS');
+
+?>
