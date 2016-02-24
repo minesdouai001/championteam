@@ -8,8 +8,20 @@ class AnonymousController extends Controller {
 
     public function defaultAction($args){
         $this->dateMenu = $args->read("dateMenu");
+        date_default_timezone_set('Europe/Paris'); 
+        if(!isset($this->dateMenu)){
+            $this->dateMenu = date("Y-m-d");
+        }
+        $entree = Menu::afficheMenuEntree($this->dateMenu)->fetch(PDO::FETCH_OBJ);
+        $plat = Menu::afficheMenuPlat($this->dateMenu)->fetch(PDO::FETCH_OBJ);
+        $dessert = Menu::afficheMenuDessert($this->dateMenu)->fetch(PDO::FETCH_OBJ);
+        
+        
         $view = new AnonymousView($this, 'anonymous');
         $view->setArg('dateMenu', $this->dateMenu);
+            $view->setArg('entree', $entree);
+        $view->setArg('plat', $plat);
+        $view->setArg('dessert', $dessert);
         $view->render();    
     }
 
