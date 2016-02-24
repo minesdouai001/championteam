@@ -6,12 +6,11 @@ class AnonymousController extends Controller {
     protected $dateMenu;
     protected $args = array();
 
-    public function defaultAction($args) {
+    public function defaultAction($args){
         $this->dateMenu = $args->read("dateMenu");
         $view = new AnonymousView($this, 'anonymous');
         $view->setArg('dateMenu', $this->dateMenu);
-        $view->render();
-       
+        $view->render();    
     }
 
     public function inscription() {
@@ -26,12 +25,12 @@ class AnonymousController extends Controller {
         if (!isset($user))
             $this->conError('Login / Mot de passe incorrect');
 
-        $_SESSION['user_id'] = $user->id();
+        $_SESSION['id_user'] = $user->id_user();
         $newRequest = Request::getCurrentRequest();
         $newRequest->write('controller', 'user');
-        $newRequest->write('user', $user->id()); //Peut etre a supprimer **************************************************************        
+        $newRequest->write('id_user', $user->id_user()); //Peut etre a supprimer **************************************************************        
         $controller = Dispatcher::getCurrentDispatcher()->dispatch($newRequest);        
-        $controller->redirect("index.php?controller=user&user=".$_SESSION['user_id']."&action=profile");
+        $controller->redirect("index.php?controller=user&user=".$_SESSION['id_user']);
     }
 
     public function validateInscription($args) {
