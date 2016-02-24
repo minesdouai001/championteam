@@ -9,16 +9,13 @@
     
         
         <h2 class="form-signin-heading">Menu du jour 
-            <?php   date_default_timezone_set('Europe/Paris'); 
-            if(isset($dateMenu)){
-                if($dateMenu != ""){
-                        echo($dateMenu);
-                    } 
-                    else{
-                        echo(date("Y-m-d"));
-                        
-                    }
-            }       
+           <?php   date_default_timezone_set('Europe/Paris'); 
+            if(isset($dateMenu) && $dateMenu != ""){
+                    echo($dateMenu);
+            }
+            else{
+                echo(date("Y-m-d"));   
+            }
             ?>
         </h2>
         <h3 class="form-signin-heading">Entrée</h3>

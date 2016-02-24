@@ -19,10 +19,8 @@ class UserController extends Controller {
 
     public function defaultAction($args) {
         $this->dateMenu = $args->read("dateMenu");
-        $view = new UserView($this, 'user');
-        $view->setArg('user', self::$args['user']);
+        $view = new UserView($this, 'user', self::$args);
         $view->setArg('login', self::$args['user']->username());
-        $view->setArg('dateMenu', $this->dateMenu);
         $view->render();  
     }
 
