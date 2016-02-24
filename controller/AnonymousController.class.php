@@ -3,11 +3,15 @@
 class AnonymousController extends Controller {
 
     protected $request;
+    protected $dateMenu;
     protected $args = array();
 
     public function defaultAction($args) {
+        $this->dateMenu = $args->read("dateMenu");
         $view = new AnonymousView($this, 'anonymous');
+        $view->setArg('dateMenu', $this->dateMenu);
         $view->render();
+       
     }
 
     public function inscription() {
