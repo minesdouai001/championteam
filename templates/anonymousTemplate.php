@@ -19,7 +19,13 @@
             ?>
         </h2>
         <h3 class="form-signin-heading">Entrée</h3>
+        <?php if ( isset($entree)){
+        echo($entree->title);} ?>
         <h3 class="form-signin-heading">Plat</h3>
+        <?php if ( isset($plat)){
+        echo($plat->title);} ?>
         <h3 class="form-signin-heading">Dessert</h3>
+       <?php  if ( isset($dessert)){
+        echo($dessert->title);} ?>
         
 </div>
