@@ -18,6 +18,11 @@ class AnonymousController extends Controller {
         $view = new AnonymousView($this, 'inscription');
         $view->render();
     }
+    
+    public function createmenu() {
+        $view = new AnonymousView($this, 'repas');
+        $view->render();
+    }
 
     public function connexion($args) {
         $login = $args->read('conLogin');

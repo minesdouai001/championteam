@@ -29,6 +29,7 @@
 
                             <li><a href="index.php">Menu</a></li>
                             <li><a href="index.php?action=camera">Camera</a></li>
+                            <li><a href="index.php?action=createmenu">Créer menu</a></li>
 
                         </ul>                        
                     <form class="form-signina" action="index.php?action=connexion" method="post">

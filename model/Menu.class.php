@@ -7,16 +7,16 @@ class Menu extends Model {
 
 //*********************************Methodes pour executer les requetes SQL******************************************************
     public static function liste_entrees() {
-        $sql = self::$queries['LISTE_ENTREES'];
+        $sql = self::$queries['LISTE_ENTREE'];
         return parent::exec($sql);
     }
     public static function liste_plats() {
-        $sql = self::$queries['LISTE_PLATS'];
+        $sql = self::$queries['LISTE_PLAT'];
         return parent::exec($sql);
     }
     
     public static function liste_desserts() {
-        $sql = self::$queries['LISTE_DESSERTS'];
+        $sql = self::$queries['LISTE_DESSERT'];
         return parent::exec($sql);
     }
 }
